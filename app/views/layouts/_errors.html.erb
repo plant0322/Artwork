@@ -1,0 +1,8 @@
+<% if obj.errors.any? %>
+  <%= obj.errors.count %>件の必須項目が入力されていません
+  <ul>
+    <% obj.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
