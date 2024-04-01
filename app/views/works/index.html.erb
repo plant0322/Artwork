@@ -2,34 +2,7 @@
   <div class="row">
     <div class="col-md-6 mx-auto">
       <h1>みんなの投稿一覧</h1>
-      <% @works.each do |work| %>
-      <% if work.state == 'art' %>
-      <div class="card p-4 my-2 d-flex flex-row">
-        <div class="col">
-          <%= image_tag work.work_image, size: '300x300' %>
-        </div>
-        <div class="col">
-          <div class="font-weight-bold mb-3">
-            <%= work.title %>
-          </div>
-          <div>
-            <%= work.body %>
-          </div>
-        </div>
-      </div>
-      <% else %>
-        <div class="card p-4 my-2 d-flex flex-row">
-            <% if work.work_image.attached? %>
-              <div class="col">
-                <%= image_tag work.work_image, size: '300x300' %>
-              </div>
-            <% end %>
-          <div class="col">
-            <%= work.body %>
-          </div>
-        </div>
-      <% end %>
-      <% end %>
+      <%= render 'index', works: @works %>
     </div>
   </div>
 </div>

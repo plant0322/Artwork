@@ -4,7 +4,7 @@ class WorksController < ApplicationController
   end
 
   def create
-    @work = Work.new(post_params)
+    @work = Work.new(work_params)
     @work.user_id = current_user.id
     if @work.save
       redirect_to works_path
@@ -18,14 +18,36 @@ class WorksController < ApplicationController
   end
 
   def show
+    @work = Work.find(params[:id])
+    @new_work_comment = WorkComment.new
+    @work_comment = WorkComment.find_by(params[:work_id])
   end
 
   def edit
+    @work = Work.find(params[:id])
+  end
+
+  def update
+    @work = Work.find(params[:id])
+    if @work.update(work_params)
+      redirect_to work_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @work = Work.find(params[:id])
+    if @work.destroy
+      redirect_to works_path
+    else
+      render :show
+    end
   end
 
   private
 
-  def post_params
+  def work_params
     params.require(:work).permit(:state, :title, :body, :work_image)
   end
 end

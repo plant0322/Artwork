@@ -1,0 +1,24 @@
+<div class="conteiner px-5">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <p>ユーザーの詳細</p>
+      <%= image_tag @user.get_profile_image(100,100) %>
+      <%= @user.name %>
+      @<%= @user.name_id %>
+      <div>
+        <%= @user.profile %>
+      </div>
+      <div>
+        <%= link_to @user.followers.count, user_followers_path(@user) %>フォロワー
+        <%= link_to @user.followings.count, user_followings_path(@user) %>フォロー
+      </div>
+      <% if current_user != @user %>
+        <%= render 'reletionships/btn', user: @user %>
+      <% else %>
+        <%= link_to 'プロフィール編集', edit_user_path, class: "btn btn-outline-danger py-0" %>
+        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, "data-confirm" => "ログアウトしますか？", class: "btn btn-outline-secondary py-0" %>
+      <% end %>
+      <%= render 'works/index', works: @works %>
+    </div>
+  </div>
+</div>

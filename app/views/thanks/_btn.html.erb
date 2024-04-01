@@ -1,0 +1,9 @@
+<% if work_comment.thanks_by?(current_user) %>
+  <%= link_to work_work_favorite_path(work_comment), method: :delete do %>
+    ♥<%= work_comment.thanks.count %>いいね
+  <% end %>
+<% else%>
+  <%= link_to work_work_favorite_path(work_comment), method: :post do %>
+    ♡<%= work_comment.thanks.count %>いいね
+  <% end %>
+<% end %>

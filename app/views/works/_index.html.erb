@@ -1,0 +1,63 @@
+<% works.each do |work| %>
+  <% if work.state == 'art' %>
+    <%= link_to work_path(work) do %>
+      <div class="card p-4 my-2 d-flex flex-row">
+        <div class="col">
+          <%= image_tag work.get_work_image(400,400) %>
+        </div>
+        <div class="col">
+          <div class="font-weight-bold mb-3">
+            <%= work.title %>
+          </div>
+          <div>
+            <%= work.body %>
+          </div>
+          <div class="card-link text-right">
+            <%= link_to user_path(work.user) do %>
+              <div>
+                <%= image_tag work.user.get_profile_image(50,50) %>
+                <%= work.user.name %>
+              </div>
+              <div class="text-black-50">
+                @<%= work.user.name_id %>
+              </div>
+            <% end %>
+            <div class="text-black-50">
+              <%= work.created_at %>
+            </div>
+            <div>
+              <%= work.work_comments.count %>コメント<br>
+              <%= render 'work_favorites/work_favorite', work: work %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <%= link_to work_path(work) do %>
+      <div class="card p-4 my-2 d-flex flex-row">
+        <div class="col">
+          <%= image_tag work.get_work_image(400,400) %>
+        </div>
+        <div class="col">
+          <%= work.body %>
+          <div class="card-link text-right">
+            <div>
+              <%= image_tag work.user.get_profile_image(50,50) %>
+              <%= work.user.name %>
+            </div>
+            <div class="text-black-50">
+              @<%= work.user.name_id %>
+            </div>
+            <div class="text-black-50">
+              <%= work.created_at %>
+            </div>
+            <div>
+              <%= render 'work_favorites/work_favorite', work: work %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_03_29_124241) do
+ActiveRecord::Schema.define(version: 2024_04_01_075616) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.bigint "blob_id", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -35,9 +35,35 @@ ActiveRecord::Schema.define(version: 2024_03_29_124241) do
   end
 
   create_table "active_storage_variant_records", force: :cascade do |t|
-    t.bigint "blob_id", null: false
+    t.integer "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.string "type"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "reletionships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "thanks", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "work_comment_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_thanks_on_user_id"
+    t.index ["work_comment_id"], name: "index_thanks_on_work_comment_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -55,6 +81,25 @@ ActiveRecord::Schema.define(version: 2024_03_29_124241) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "work_comments", force: :cascade do |t|
+    t.text "comment"
+    t.integer "user_id", null: false
+    t.integer "work_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_work_comments_on_user_id"
+    t.index ["work_id"], name: "index_work_comments_on_work_id"
+  end
+
+  create_table "work_favorites", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "work_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_work_favorites_on_user_id"
+    t.index ["work_id"], name: "index_work_favorites_on_work_id"
+  end
+
   create_table "works", force: :cascade do |t|
     t.string "state"
     t.string "title"
@@ -67,5 +112,12 @@ ActiveRecord::Schema.define(version: 2024_03_29_124241) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "posts", "users"
+  add_foreign_key "thanks", "users"
+  add_foreign_key "thanks", "work_comments"
+  add_foreign_key "work_comments", "users"
+  add_foreign_key "work_comments", "works"
+  add_foreign_key "work_favorites", "users"
+  add_foreign_key "work_favorites", "works"
   add_foreign_key "works", "users"
 end

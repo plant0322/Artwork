@@ -12,11 +12,12 @@
   </head>
 
   <body>
+    <!--ヘッダー-->
     <header class="mt-5">
       <% if user_signed_in? %>
-        <%= link_to '新規投稿', new_work_path %>
-        <%= link_to '投稿一覧', works_path %>
-        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, "data-confirm" => "ログアウトしますか？" %>
+        <%= link_to '新規投稿　', new_work_path %>
+        <%= link_to '投稿一覧　', works_path %>
+        <%= link_to current_user.name + 'さんのマイページ', user_path(current_user.id) %>
       <% else %>
         <%= link_to 'ログイン', new_user_session_path %>
       <% end %>
@@ -24,5 +25,18 @@
     <main>
       <%= yield %>
     </main>
+    <!--フッター-->
+    <footer>
+      <% if user_signed_in? %>
+        <%= link_to 'Home(フォローしている人全部の投稿)　', new_work_path %>
+        <%= link_to 'ART(フォローしている人のartのみ)　', new_work_path %>
+        <%= link_to 'SEARCH(検索窓へ)　', new_work_path %>
+        <%= link_to 'BELL(通知)　', new_work_path %>
+        <%= link_to 'マイページ　', user_path(current_user.id) %>
+        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, "data-confirm" => "ログアウトしますか？" %>
+      <% else %>
+        <%= link_to 'ログイン', new_user_session_path %>
+      <% end %>
+    </footer>
   </body>
 </html>

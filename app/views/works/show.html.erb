@@ -1,2 +1,89 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<div class="conteiner px-5">
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+      <p>投稿の詳細</p>
+      <!--左側-->
+      <div class="card p-4 d-flex flex-row">
+        <div class="col-md-9">
+          <%= image_tag @work.get_work_image(600,600), class: "card-img-top" %>
+        </div>
+        <!--右側-->
+        <div class="col-md-3">
+          <div>
+            <h1 class="card-title"><%= @work.title %></h1>
+          </div>
+          <div>
+            <p class="card-text"><%= @work.body %></p>
+          </div>
+          <!--ユーザー情報-->
+          <div class="card-link text-right">
+            <%= link_to user_path(@work.user_id) do %>
+              <div>
+                <%= image_tag @work.user.get_profile_image(50,50) %>
+                <%= @work.user.name %>
+              </div>
+              <div class="text-black-50">
+                @<%= @work.user.name_id %>
+              </div>
+            <% end %>
+            <div class="text-black-50">
+              <%= @work.created_at %>
+            </div>
+            <div>
+              <%= @work.work_comments.count %>コメント<br>
+              <%= render 'work_favorites/work_favorite', work: @work %>
+            </div>
+            <!--投稿者の場合の編集ボタンと削除-->
+            <% if @work.user == current_user %>
+              <%= link_to edit_work_path(@work), class: "btn btn-outline-danger py-0" do %>
+                <%= @work.state %>
+              <% end %>
+              <%= link_to '削除', work_path(@work), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-secondary py-0" %>
+            <% end %>
+          </div>
+          <!--コメント送信-->
+          <div>
+            <%= form_with model: [@work, @new_work_comment] do |f| %>
+              <%= f.text_area :comment, class: "form-control mt-3", rows: '5', placeholder: "コメントを送る" %>
+              <div class="text-right">
+                <%= f.submit '送信', class: "btn btn-info mt-2" %>
+              </div>
+            <% end %>
+          </div>
+          <!--コメント表示-->
+          <div class="mt-3">
+            <% @work.work_comments. each do |work_comment| %>
+              <div class="card my-2">
+                <!--コメントした人の情報-->
+                <%= link_to user_path(work_comment.user) do %>
+                  <div class="row">
+                    <div class="col-md-3">
+                      <%= image_tag work_comment.user.get_profile_image(50,50) %>
+                    </div>
+                    <div class="col-md-9 mt-2">
+                      <%= work_comment.user.name %>
+                      @<%= work_comment.user.name_id %>
+                    </div>
+                  </div>
+                <% end %>
+
+                <div class="p-3">
+                  <%= work_comment.comment %>
+                </div>
+                <!--コメントのいいね（未完成）-->
+                <div class="p-2">
+                  <%= render 'thanks/btn', work_comment: @work_comment %>
+                </div>
+                <div class="text-right">
+                  <%= link_to '削除', work_work_comment_path(work_comment), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-secondary p-1 m-2" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -3,6 +3,11 @@
   <div class="form-group">
     <%= f.select :state, [["完成（全て入力）", "art"], ["制作過程（文章のみ必須）", "making"], ["制作メモ（文章のみ必須）", "memo"]], include_blank: "選択して下さい" %>
   </div>
+  <div class="mb-3">
+    <%= f.label :image %><br>
+    <%= image_tag work.get_work_image(500,500) %>
+    <%= f.file_field :work_image %>
+  </div>
   <div class="form-group">
     <%= f.label :title %>
     <%= f.text_field :title, class: "form-control" %>
@@ -12,9 +17,6 @@
     <%= f.text_area :body, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.file_field :work_image, accept: "image/*" %>
-  </div>
-  <div class="form-group">
-    <%= f.submit '投稿', class: "btn btn-primary" %>
+    <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>
