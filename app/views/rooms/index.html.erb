@@ -1,0 +1,8 @@
+<% @rooms_user.each do |user| %>
+  <div>
+    <%= link_to chat_path(user) do %>
+      <%= image_tag user.get_profile_image(70,70) %>
+      <%= user.name %>とのDM
+    <% end %>
+  </div>
+<% end %>

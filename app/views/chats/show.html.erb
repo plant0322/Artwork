@@ -1,0 +1,24 @@
+<div class="conteiner px-5">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <p><%= @user.name %>さんとのDM</p>
+      <% @chats.each do |chat| %>
+        <div>
+          <%= render 'layouts/errors', obj: @chat %>
+          <%= image_tag chat.user.get_profile_image(70,70) %>
+          <%= chat.user.name %>
+          <%= chat.message %>
+          <% if chat.user == current_user %>
+            <%= link_to '削除', chat_path(chat), method: :delete %>
+          <% end %>
+        </div>
+      <% end %>
+      <!--メッセージ送信フォーム-->
+      <%= form_with model: @chat do |f| %>
+        <%= f.text_area :message, class: "form-control" %>
+        <%= f.submit '送信', class: "btn btn-primary mt-2" %>
+        <%= f.hidden_field :room_id %>
+      <% end %>
+    </div>
+  </div>
+</div>

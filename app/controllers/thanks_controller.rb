@@ -8,7 +8,7 @@ class ThanksController < ApplicationController
   end
 
   def destroy
-    @work_comment = WorkComment.find_(params[:work_comment_id])
+    @work_comment = WorkComment.find(params[:work_comment_id])
     thank = current_user.thanks.find_by(work_comment_id: @work_comment.id)
     thank.destroy
     redirect_to request.referer

@@ -14,6 +14,9 @@
       </div>
       <% if current_user != @user %>
         <%= render 'reletionships/btn', user: @user %>
+        <% if current_user.following?(@user) && @user.following?(current_user) %>
+          <%= link_to 'DMを送る', chat_path(@user.id) %>
+        <% end %>
       <% else %>
         <%= link_to 'プロフィール編集', edit_user_path, class: "btn btn-outline-danger py-0" %>
         <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, "data-confirm" => "ログアウトしますか？", class: "btn btn-outline-secondary py-0" %>

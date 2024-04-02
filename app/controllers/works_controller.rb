@@ -20,7 +20,7 @@ class WorksController < ApplicationController
   def show
     @work = Work.find(params[:id])
     @new_work_comment = WorkComment.new
-    @work_comment = WorkComment.find_by(params[:work_id])
+    @work_comment = WorkComment.find_by(params[:id])
   end
 
   def edit

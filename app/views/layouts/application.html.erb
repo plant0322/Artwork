@@ -18,6 +18,7 @@
         <%= link_to '新規投稿　', new_work_path %>
         <%= link_to '投稿一覧　', works_path %>
         <%= link_to current_user.name + 'さんのマイページ', user_path(current_user.id) %>
+        <%= link_to current_user.name + 'さんのDM', rooms_path %>
       <% else %>
         <%= link_to 'ログイン', new_user_session_path %>
       <% end %>

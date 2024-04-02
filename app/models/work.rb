@@ -2,7 +2,6 @@ class Work < ApplicationRecord
   belongs_to :user
   has_many :work_favorites, dependent: :destroy
   has_many :work_comments, dependent: :destroy
-  has_many :thanks, dependent: :destroy
 
   has_one_attached :work_image
 

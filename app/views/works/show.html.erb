@@ -72,7 +72,7 @@
                 </div>
                 <!--コメントのいいね（未完成）-->
                 <div class="p-2">
-                  <%= render 'thanks/btn', work_comment: @work_comment %>
+                  <%= render 'thanks/btn',work: @work, work_comment: @work_comment %>
                 </div>
                 <div class="text-right">
                   <%= link_to '削除', work_work_comment_path(work_comment), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-secondary p-1 m-2" %>

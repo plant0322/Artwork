@@ -7,6 +7,11 @@ class User < ApplicationRecord
   has_many :works, dependent: :destroy
   has_many :work_favorites, dependent: :destroy
   has_many :work_comments, dependent: :destroy
+  has_many :thanks, dependent: :destroy
+
+  has_many :user_rooms, dependent: :destroy
+  has_many :rooms, dependent: :destroy
+  has_many :chats, dependent: :destroy
 
   has_many :reletionships, class_name: "Reletionship", foreign_key: "follower_id", dependent: :destroy
   has_many :reverse_of_reletionships, class_name: "Reletionship", foreign_key: "followed_id", dependent: :destroy
