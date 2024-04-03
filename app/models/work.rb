@@ -14,6 +14,14 @@ class Work < ApplicationRecord
     state == 'art'
   end
 
+  def self.search_for(content, method)
+    if method == 'perfect'
+      Work.where(body: content)
+    else
+      Work.where('body LIKE?', '%' + content + '%')
+    end
+  end
+
   def get_work_image(width, height)
     if work_image.attached?
       work_image.variant(resize_to_fit: [width, height]).processed

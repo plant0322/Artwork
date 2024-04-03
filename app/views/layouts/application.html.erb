@@ -19,6 +19,7 @@
         <%= link_to '投稿一覧　', works_path %>
         <%= link_to current_user.name + 'さんのマイページ', user_path(current_user.id) %>
         <%= link_to current_user.name + 'さんのDM', rooms_path %>
+        <%= render 'searches/form' %>
       <% else %>
         <%= link_to 'ログイン', new_user_session_path %>
       <% end %>

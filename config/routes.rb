@@ -18,5 +18,7 @@ Rails.application.routes.draw do
 
   resources :chats, only: [:show, :create, :destroy]
   resources :rooms, only: [:index]
+
+  get "search" => "searches#search"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

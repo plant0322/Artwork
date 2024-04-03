@@ -18,6 +18,10 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_of_reletionships, source: :follower
   has_many :followings, through: :reletionships, source: :followed
 
+  has_one_attached :profile_image
+
+  validates :name_id, uniqueness: true
+
   def follow(user)
     reletionships.create(followed_id: user.id)
   end
@@ -30,9 +34,13 @@ class User < ApplicationRecord
     followings.include?(user)
   end
 
-  has_one_attached :profile_image
-
-  validates :name_id, uniqueness: true
+  def self.search_for(content, method)
+    if method == 'perfect'
+      User.where(name: content)
+    else
+      User.where('name LIKE?', '%' + content + '%')
+    end
+  end
 
   def get_profile_image(width, height)
     unless profile_image.attached?
