@@ -15,8 +15,8 @@
     <!--ヘッダー-->
     <header class="mt-5">
       <% if user_signed_in? %>
-        <%= link_to '新規投稿　', new_work_path %>
-        <%= link_to '投稿一覧　', works_path %>
+        <%= link_to '新規投稿', new_work_path %>
+        <%= link_to '投稿一覧', works_path %>
         <%= link_to current_user.name + 'さんのマイページ', user_path(current_user.id) %>
         <%= link_to current_user.name + 'さんのDM', rooms_path %>
         <%= render 'searches/form' %>
