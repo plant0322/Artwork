@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :works, dependent: :destroy
   has_many :work_favorites, dependent: :destroy
   has_many :work_comments, dependent: :destroy
+  has_many :view_counts, dependent: :destroy
+
   has_many :thanks, dependent: :destroy
 
   has_many :user_rooms, dependent: :destroy

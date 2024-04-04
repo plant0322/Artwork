@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_04_02_075356) do
+ActiveRecord::Schema.define(version: 2024_04_04_055206) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -105,6 +105,15 @@ ActiveRecord::Schema.define(version: 2024_04_02_075356) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "view_counts", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "work_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_view_counts_on_user_id"
+    t.index ["work_id"], name: "index_view_counts_on_work_id"
+  end
+
   create_table "work_comments", force: :cascade do |t|
     t.text "comment"
     t.integer "user_id", null: false
@@ -143,6 +152,8 @@ ActiveRecord::Schema.define(version: 2024_04_02_075356) do
   add_foreign_key "thanks", "work_comments"
   add_foreign_key "user_rooms", "rooms"
   add_foreign_key "user_rooms", "users"
+  add_foreign_key "view_counts", "users"
+  add_foreign_key "view_counts", "works"
   add_foreign_key "work_comments", "users"
   add_foreign_key "work_comments", "works"
   add_foreign_key "work_favorites", "users"

@@ -30,8 +30,18 @@
               <%= @work.created_at %>
             </div>
             <div>
-              <%= @work.work_comments.count %>コメント<br>
-              <%= render 'work_favorites/work_favorite', work: @work %>
+              <!--コメント数-->
+              <div>
+              <%= @work.work_comments.count %>コメント
+              </div>
+              <!--閲覧数-->
+              <div>
+                <%= @work.view_counts.count %> Views
+              </div>
+              <!--いいね数-->
+              <div>
+                <%= render 'work_favorites/work_favorite', work: @work %>
+              </div>
             </div>
             <!--投稿者の場合の編集ボタンと削除-->
             <% if @work.user == current_user %>
@@ -70,7 +80,7 @@
                 <div class="p-3">
                   <%= work_comment.comment %>
                 </div>
-                <!--コメントのいいね（未完成）-->
+                <!--コメント分かる（未完成）-->
                 <div class="p-2">
                   <%= render 'thanks/btn',work: @work, work_comment: @work_comment %>
                 </div>
