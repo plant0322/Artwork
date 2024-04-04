@@ -4,6 +4,24 @@ class UsersController < ApplicationController
     @works = @user.works
   end
 
+  def users_art
+    @user = User.find(params[:id])
+    @works = @user.works
+    @work_state = @user.works.where(state: "art")
+  end
+
+  def users_making
+    @user = User.find(params[:id])
+    @works = @user.works
+    @work_state = @user.works.where(state: "making")
+  end
+
+  def users_memo
+    @user = User.find(params[:id])
+    @works = @user.works
+    @work_state = @user.works.where(state: "memo")
+  end
+
   def index
     @users = User.all
   end

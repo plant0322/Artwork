@@ -1,7 +1,7 @@
 <div class="conteiner px-5">
   <div class="row">
     <div class="col-md-6 mx-auto">
-      <p>ユーザーの詳細</p>
+      <h1>ユーザー詳細</h1>
       <%= image_tag @user.get_profile_image(100,100) %>
       <%= @user.name %>
       @<%= @user.name_id %>
@@ -21,6 +21,10 @@
         <%= link_to 'プロフィール編集', edit_user_path, class: "btn btn-outline-danger py-0" %>
         <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, "data-confirm" => "ログアウトしますか？", class: "btn btn-outline-secondary py-0" %>
       <% end %>
+        <!--ART MAKING MEMOのタブ-->
+      <div class="row">
+        <%= render 'tab', works: @works %>
+      </div>
       <%= render 'works/index', works: @works %>
     </div>
   </div>

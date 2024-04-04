@@ -1,0 +1,15 @@
+<div class="col card p-2 mx-1">
+  <%= link_to users_art_path do %>
+    Art（<%= works.where(state: "art").count %>）
+  <% end %>
+</div>
+<div class="col card p-2 mx-1">
+  <%= link_to users_making_path do %>
+    Making（<%= works.where(state: "making").count %>）
+  <% end %>
+</div>
+<div class="col card p-2 mx-1">
+  <%= link_to users_memo_path do %>
+    Memo（<%= works.where(state: "memo").count %>）
+  <% end %>
+</div>

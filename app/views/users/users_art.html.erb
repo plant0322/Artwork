@@ -1,12 +1,12 @@
 <div class="conteiner px-5">
   <div class="row">
     <div class="col-md-6 mx-auto">
-      <h1>みんなの投稿一覧</h1>
+      <h1><%= @user.name %>さんのArt一覧</h1>
       <!--ART MAKING MEMOのタブ-->
       <div class="row">
-        <%= render 'tab' %>
+        <%= render 'tab', works: @works %>
       </div>
-      <%= render 'index', works: @works %>
+      <%= render 'works/index', works: @work_state %>
     </div>
   </div>
 </div>

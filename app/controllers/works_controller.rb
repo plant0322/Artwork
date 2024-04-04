@@ -26,6 +26,18 @@ class WorksController < ApplicationController
     end
   end
 
+  def works_art
+    @works = Work.where(state: "art")
+  end
+
+  def works_making
+    @works = Work.where(state: "making")
+  end
+
+  def works_memo
+    @works = Work.where(state: "memo")
+  end
+
   def edit
     @work = Work.find(params[:id])
   end
