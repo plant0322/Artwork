@@ -1,4 +1,6 @@
 class RoomsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     current_user_room_ids = current_user.user_rooms.pluck(:room_id)
     other_user_ids = UserRoom.where(room_id: current_user_room_ids)

@@ -22,7 +22,8 @@ class User < ApplicationRecord
 
   has_one_attached :profile_image
 
-  validates :name_id, uniqueness: true
+  validates :name_id, uniqueness: true, presence: true
+  validates :name, presence: true
 
   def follow(user)
     reletionships.create(followed_id: user.id)

@@ -24,6 +24,8 @@
         <%= link_to 'ログイン', new_user_session_path %>
       <% end %>
     </header>
+    <!--フラッシュメッセージ-->
+    <%= flash[:notice] %>
     <main>
       <%= yield %>
     </main>

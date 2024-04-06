@@ -1,4 +1,6 @@
 class WorksController < ApplicationController
+    before_action :authenticate_user!
+
   def new
     @work = Work.new
   end
@@ -7,6 +9,7 @@ class WorksController < ApplicationController
     @work = Work.new(work_params)
     @work.user_id = current_user.id
     if @work.save
+      flash[:notice] = "投稿しました"
       redirect_to works_path
     else
       render :new
@@ -54,6 +57,7 @@ class WorksController < ApplicationController
   def destroy
     @work = Work.find(params[:id])
     if @work.destroy
+      flash[:notice] = "削除しました"
       redirect_to works_path
     else
       render :show
