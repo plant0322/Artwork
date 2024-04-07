@@ -32,8 +32,8 @@
     <!--フッター-->
     <footer>
       <% if user_signed_in? %>
-        <%= link_to 'Home(フォローしている人全部の投稿)　', new_work_path %>
-        <%= link_to 'ART(フォローしている人のartのみ)　', new_work_path %>
+        <%= link_to 'Home(フォローしている人全部の投稿)　', user_followwork_path(current_user.id) %>
+        <%= link_to 'ART(フォローしている人のartのみ)　', user_followart_path(current_user.id) %>
         <%= link_to 'SEARCH(検索窓へ)　', new_work_path %>
         <%= link_to 'BELL(通知)　', new_work_path %>
         <%= link_to 'マイページ　', user_path(current_user.id) %>

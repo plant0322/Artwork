@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     resource :reletionships, only: [:create, :destroy]
     get "followings" => "reletionships#followings", as: "followings"
     get "followers" => "reletionships#followers", as: "followers"
+    get "followwork" => "reletionships#followwork", as: "followwork"
+    get "followart" => "reletionships#followart", as: "followart"
   end
 
     get "users/:id/users_art" => "users#users_art", as: "users_art"

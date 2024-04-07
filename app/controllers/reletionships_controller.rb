@@ -22,4 +22,14 @@ class ReletionshipsController < ApplicationController
     @user = User.find(params[:user_id])
     @users = @user.followers
   end
+
+  def followwork
+    @user = User.find(params[:user_id])
+    @works = Work.where(user_id: [current_user, *current_user.following_ids])
+  end
+
+  def followart
+    @user = User.find(params[:user_id])
+    @works = Work.where(user_id: [current_user, *current_user.following_ids], state: "art")
+  end
 end
