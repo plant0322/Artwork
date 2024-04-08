@@ -39,8 +39,8 @@
                 <%= @work.view_counts.count %> Views
               </div>
               <!--いいね数-->
-              <div>
-                <%= render 'work_favorites/work_favorite', work: @work %>
+              <div class=<%= "favorite-" + @work.id.to_s %>>
+                <%= render 'work_favorites/btn', work: @work %>
               </div>
             </div>
             <!--投稿者の場合の編集ボタンと削除-->
@@ -81,8 +81,8 @@
                   <%= work_comment.comment %>
                 </div>
                 <!--コメント分かる（未完成）-->
-                <div class="p-2">
-                  <%= render 'thanks/btn',work: @work, work_comment: @work_comment %>
+                <div class="<%= "thank-" + work_comment.id.to_s %> p-2">
+                  <%= render 'thanks/btn',work: @work, work_comment: work_comment %>
                 </div>
                 <div class="text-right">
                   <%= link_to '削除', work_work_comment_path(work_comment), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-secondary p-1 m-2" %>

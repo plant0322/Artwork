@@ -26,8 +26,12 @@
               <%= work.created_at %>
             </div>
             <div>
-              <%= work.work_comments.count %>コメント<br>
-              <%= render 'work_favorites/work_favorite', work: work %>
+              <div>
+                <%= work.work_comments.count %>コメント
+              </div>
+              <div class=<%= "favorite-" + work.id.to_s %>>
+                <%= render 'work_favorites/btn', work: work %>
+              </div>
             </div>
           </div>
         </div>
@@ -52,8 +56,8 @@
             <div class="text-black-50">
               <%= work.created_at %>
             </div>
-            <div>
-              <%= render 'work_favorites/work_favorite', work: work %>
+            <div class=<%= "favorite-" + work.id.to_s %>>
+              <%= render 'work_favorites/btn', work: work %>
             </div>
           </div>
         </div>
