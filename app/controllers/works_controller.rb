@@ -23,7 +23,6 @@ class WorksController < ApplicationController
   def show
     @work = Work.find(params[:id])
     @new_work_comment = WorkComment.new
-    @work_comment = WorkComment.find_by(params[:id])
     unless ViewCount.find_by(user_id: current_user.id, work_id: @work.id)
       current_user.view_counts.create(work_id: @work.id)
     end
