@@ -1,0 +1,6 @@
+<%= form_with model: [work, new_work_comment], local: false do |f| %>
+  <%= f.text_area :comment, class: "form-control mt-3", rows: '5', placeholder: "コメントを送る" %>
+  <div class="text-right">
+    <%= f.submit '送信', class: "btn btn-info mt-2" %>
+  </div>
+<% end %>

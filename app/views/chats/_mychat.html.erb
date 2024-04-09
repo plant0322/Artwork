@@ -1,0 +1,6 @@
+<div id="chat-<%= chat.id %>" class="text-right">
+  <%= chat.message %>
+  <%= image_tag chat.user.get_profile_image(70,70) %>
+  <%= chat.user.name %>
+  <%= link_to '削除', chat_path(chat), method: :delete, "data-confirm" => "本当に削除しますか？", remote: true, class: "btn btn-secondary p-1 m-2" %>
+</div>

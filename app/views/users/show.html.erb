@@ -8,12 +8,14 @@
       <div>
         <%= @user.profile %>
       </div>
-      <div>
-        <%= link_to @user.followers.count, user_followers_path(@user) %>フォロワー
-        <%= link_to @user.followings.count, user_followings_path(@user) %>フォロー
+      <div class="reletionships-count">
+        <%= render 'reletionships/count', user: @user %>
       </div>
       <% if current_user != @user %>
-        <%= render 'reletionships/btn', user: @user %>
+        <!--フォローボタン-->
+        <div class="reletionships-btn">
+          <%= render 'reletionships/btn', user: @user %>
+        </div>
         <% if current_user.following?(@user) && @user.following?(current_user) %>
           <%= link_to 'DMを送る', chat_path(@user.id) %>
         <% end %>

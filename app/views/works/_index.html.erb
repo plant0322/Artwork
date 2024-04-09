@@ -27,7 +27,7 @@
             </div>
             <div>
               <div>
-                <%= work.work_comments.count %>コメント
+                <%= render 'work_comments/count', work: work %>
               </div>
               <div class=<%= "favorite-" + work.id.to_s %>>
                 <%= render 'work_favorites/btn', work: work %>

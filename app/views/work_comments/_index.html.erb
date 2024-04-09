@@ -1,0 +1,28 @@
+<% work.work_comments. each do |work_comment| %>
+  <div class="card my-2">
+    <!--コメントした人の情報-->
+    <%= link_to user_path(work_comment.user) do %>
+      <div class="row">
+        <div class="col-md-3">
+          <%= image_tag work_comment.user.get_profile_image(50,50) %>
+        </div>
+        <div class="col-md-9 mt-2">
+          <%= work_comment.user.name %>
+          @<%= work_comment.user.name_id %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="p-3">
+      <%= work_comment.comment %>
+    </div>
+    <!--コメント分かる（未完成）-->
+    <div class="<%= "thanks-" + work_comment.id.to_s %> p-2">
+      <%= render 'thanks/btn',work: work, work_comment: work_comment %>
+    </div>
+    <!--コメントの削除-->
+    <div class="text-right">
+      <%= link_to '削除', work_work_comment_path(work, work_comment), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-secondary p-1 m-2", remote: true %>
+    </div>
+  </div>
+<% end %>
