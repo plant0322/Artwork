@@ -13,34 +13,52 @@
 
   <body>
     <!--ヘッダー-->
-    <header class="mt-5">
-      <% if user_signed_in? %>
-        <%= link_to '新規投稿', new_work_path %>
-        <%= link_to '投稿一覧', works_path %>
-        <%= link_to current_user.name + 'さんのマイページ', user_path(current_user.id) %>
-        <%= link_to current_user.name + 'さんのDM', rooms_path %>
-        <%= render 'searches/form' %>
-      <% else %>
-        <%= link_to 'ログイン', new_user_session_path %>
-      <% end %>
+    <header class="fixed-top" style="height:50px; background-color: #d4ebec;" >
+      <div class="contener">
+        <div class="row">
+          <div class="col d-flex justify-content-center py-2">
+            <% if user_signed_in? %>
+            <div class="col-md-4">
+              <%= render 'searches/form' %>
+            </div>
+            <div class="col-md-8">
+              <%= link_to '投稿する', new_work_path, class: "px-3" %>
+              <%= link_to 'みんなの作品', works_path, class: "px-3" %>
+              <%= link_to 'マイページ', user_path(current_user.id), class: "px-3" %>
+              <%= link_to current_user.name + 'さんのDM', rooms_path, class: "px-3" %>
+            </div>
+            <% else %>
+              <%= link_to 'ログイン', new_user_session_path %>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </header>
     <!--フラッシュメッセージ-->
     <%= flash[:notice] %>
     <main>
+      <div class="contener py-5">
       <%= yield %>
+      </div>
     </main>
     <!--フッター-->
-    <footer>
-      <% if user_signed_in? %>
-        <%= link_to 'Home(フォローしている人全部の投稿)　', user_followwork_path(current_user.id) %>
-        <%= link_to 'ART(フォローしている人のartのみ)　', user_followart_path(current_user.id) %>
-        <%= link_to 'SEARCH(検索窓へ)　', new_work_path %>
-        <%= link_to 'BELL(通知)　', new_work_path %>
-        <%= link_to 'マイページ　', user_path(current_user.id) %>
-        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, "data-confirm" => "ログアウトしますか？" %>
-      <% else %>
-        <%= link_to 'ログイン', new_user_session_path %>
-      <% end %>
+    <footer class="fixed-bottom" style="height:50px; background-color: #d4ebec;">
+      <div class="contener">
+        <div class="row">
+          <div class="col d-flex justify-content-center py-2">
+            <% if user_signed_in? %>
+              <%= link_to 'フォロー中の投稿', user_followwork_path(current_user.id), class: "px-3" %>
+              <%= link_to 'フォロー中の作品', user_followart_path(current_user.id), class: "px-3" %>
+              <%= link_to '検索', new_work_path, class: "px-3" %>
+              <%= link_to '(通知)　', new_work_path, class: "px-3" %>
+              <%= link_to 'マイページ　', user_path(current_user.id), class: "px-3" %>
+              <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, "data-confirm" => "ログアウトしますか？", class: "px-3" %>
+            <% else %>
+              <%= link_to 'ログイン', new_user_session_path %>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </footer>
   </body>
 </html>

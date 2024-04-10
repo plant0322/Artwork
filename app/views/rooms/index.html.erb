@@ -4,6 +4,7 @@
       <%= link_to chat_path(user) do %>
         <%= image_tag user.get_profile_image(70,70) %>
         <%= user.name %>とのDM
+        <%= user.chats.last.message %>
       <% end %>
     </div>
   <% end %>
