@@ -1,0 +1,22 @@
+<h1><%= user.name %></h1>
+<%= image_tag user.get_profile_image(100,100) %>
+<%= user.name %>
+@<%= user.name_id %>
+<div>
+  <%= user.profile %>
+</div>
+<div class="reletionships-count">
+  <%= render 'reletionships/count', user: user %>
+</div>
+<% if current_user != user %>
+  <!--フォローボタン-->
+  <div class="reletionships-btn">
+    <%= render 'reletionships/btn', user: user %>
+  </div>
+  <% if current_user.following?(user) && user.following?(current_user) %>
+    <%= link_to 'DMを送る', chat_path(user.id) %>
+  <% end %>
+<% else %>
+  <%= link_to 'プロフィール編集', edit_user_path, class: "btn btn-outline-danger py-0" %>
+  <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, "data-confirm" => "ログアウトしますか？", class: "btn btn-outline-secondary py-0" %>
+<% end %>

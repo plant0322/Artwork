@@ -1,15 +1,15 @@
-<div class="col card p-2 mx-1">
+<div class="col card p-2 mx-1 <%= request.path.match("/users_art") ? "bg-info" : "" %>">
   <%= link_to users_art_path do %>
-    Art（<%= works.where(state: "art").count %>）
+    <span class="<%= request.path.match("/users_art") ? "text-white" : "" %>">Art（<%= works.where(state: "art").count %>）</span>
   <% end %>
 </div>
-<div class="col card p-2 mx-1">
+<div class="col card p-2 mx-1 <%= request.path.match("/users_making") ? "bg-info" : "" %>">
   <%= link_to users_making_path do %>
-    Making（<%= works.where(state: "making").count %>）
+    <span class="<%= request.path.match("/users_making") ? "text-white" : "" %>">Making（<%= works.where(state: "making").count %>）</span>
   <% end %>
 </div>
-<div class="col card p-2 mx-1">
+<div class="col card p-2 mx-1 <%= request.path.match("/users_memo") ? "bg-info" : "" %>">
   <%= link_to users_memo_path do %>
-    Memo（<%= works.where(state: "memo").count %>）
+    <span class="<%= request.path.match("/users_memo") ? "text-white" : "" %>">Memo（<%= works.where(state: "memo").count %>）</span>
   <% end %>
 </div>

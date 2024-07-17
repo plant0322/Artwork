@@ -1,1 +1,12 @@
 @use '~bootstrap/scss/bootstrap';
+
+
+.modal-container {
+  visibility: hidden;
+  background-color: #ccc;
+}
+
+.modal-container.active {
+  visibility: visible;
+}
+

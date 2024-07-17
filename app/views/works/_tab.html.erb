@@ -1,9 +1,15 @@
-<div class="col card p-2 mx-1">
-  <%= link_to 'Art', works_art_path %>
+<div class="col card p-2 mx-1 <%= request.path.match("/works_art") ? "bg-info" : "" %>">
+  <%= link_to works_art_path do %>
+    <span class="<%= request.path.match("/works_art") ? "text-white" : "" %>">Art</span>
+  <% end %>
 </div>
-<div class="col card p-2 mx-1">
-  <%= link_to 'Making', works_making_path %>
+<div class="col card p-2 mx-1 <%= request.path.match("/works_making") ? "bg-info" : "" %>">
+  <%= link_to works_making_path do %>
+    <span class="<%= request.path.match("/works_making") ? "text-white" : "" %>">Making</span>
+  <% end %>
 </div>
-<div class="col card p-2 mx-1">
-  <%= link_to 'Memo', works_memo_path %>
+<div class="col card p-2 mx-1 <%= request.path.match("/works_memo") ? "bg-info" : "" %>">
+  <%= link_to works_memo_path do %>
+    <span class="<%= request.path.match("/works_memo") ? "text-white" : "" %>">Memo</span>
+  <% end %>
 </div>
