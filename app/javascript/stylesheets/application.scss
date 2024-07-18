@@ -2,8 +2,24 @@
 
 
 .modal-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  border: solid 1px #ccc;
+  padding: 20px;
+  opacity: 0.9;
   visibility: hidden;
-  background-color: #ccc;
+  background-color: #fff;
+}
+
+.modal-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 30px;
+  color: #ccc;
 }
 
 .modal-container.active {

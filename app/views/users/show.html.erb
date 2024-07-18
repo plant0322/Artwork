@@ -4,20 +4,23 @@
       <%= render 'profile', user: @user %>
       <!--投稿するボタン-->
       <button class="modal-open btn btn-info">投稿する</button>
-      <div class="modal-container">
-        <div class="modal-body">
-          <div class="modal-close"><i class="fa-solid fa-circle-xmark"></i></div>
-          <div class="modal-post-content">
-            <p>中身</p>
-          </div>
-        </div>
-      </div>
 
       <!--ART MAKING MEMOのタブ-->
       <div class="row pt-3">
         <%= render 'tab', works: @works %>
       </div>
       <%= render 'works/index', works: @works %>
+    </div>
+  </div>
+</div>
+
+
+<!--投稿フォーム（モーダル）-->
+<div class="modal-container">
+  <div class="modal-body">
+    <div class="modal-close"><i class="fa-solid fa-circle-xmark"></i></div>
+    <div class="modal-post-content">
+      <%= render 'works/form', work: @work %>
     </div>
   </div>
 </div>
