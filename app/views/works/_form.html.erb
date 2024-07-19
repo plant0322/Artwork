@@ -1,5 +1,4 @@
 <%= form_with model: work do |f| %>
-<%= render 'layouts/errors', obj: work %>
   <div class="form-group">
     <%= f.select :state, [["完成（全て入力）", "art"], ["制作過程（文章のみ必須）", "making"], ["制作メモ（文章のみ必須）", "memo"]], include_blank: "選択して下さい" %>
   </div>

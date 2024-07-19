@@ -1,8 +1,8 @@
 class WorksController < ApplicationController
     before_action :authenticate_user!
+    before_action :set_new_work
 
   def new
-    @work = Work.new
   end
 
   def create
@@ -10,14 +10,14 @@ class WorksController < ApplicationController
     @work.user_id = current_user.id
     if @work.save
       flash[:notice] = "投稿しました"
-      redirect_to works_path
+      redirect_to request.referer
     else
-      render :new
+      redirect_to request.referer
     end
   end
 
   def index
-    @works = Work.all
+    @works = Work.all.order(id: :DESC)
   end
 
   def show

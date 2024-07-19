@@ -1,5 +1,6 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_new_work
 
   def index
     current_user_room_ids = current_user.user_rooms.pluck(:room_id)

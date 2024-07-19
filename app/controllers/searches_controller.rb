@@ -1,5 +1,6 @@
 class SearchesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_new_work
 
   def search
     @content = params[:content]

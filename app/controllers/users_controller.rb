@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_new_work
 
   def show
     @user = User.find(params[:id])
-    @works = @user.works
+    @works = @user.works.order(id: :DESC)
     @work = Work.new
   end
 

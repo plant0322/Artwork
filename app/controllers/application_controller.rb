@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
     user_followwork_path(resource)
   end
 
+  private
+
+  def set_new_work
+    @new_work = Work.new
+  end
+
   protected
 
   def configure_permitted_parameters

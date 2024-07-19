@@ -22,7 +22,7 @@
               <%= render 'searches/form' %>
             </div>
             <div class="col-md-8">
-              <%= link_to '投稿する', new_work_path, class: "px-3" %>
+              <%= link_to '投稿する', new_work_path, class: "modal-open px-3" %>
               <%= link_to 'みんなの作品', works_path, class: "px-3" %>
               <%= link_to 'マイページ', user_path(current_user.id), class: "px-3" %>
               <%= link_to current_user.name + 'さんのDM', rooms_path, class: "px-3" %>
@@ -37,6 +37,7 @@
     <!--フラッシュメッセージ-->
     <%= flash[:notice] %>
     <main>
+      <%#= render 'layouts/errors', obj: @new_work %>
       <div class="contener py-5">
       <%= yield %>
       </div>
@@ -60,5 +61,16 @@
         </div>
       </div>
     </footer>
+
+    <!--投稿フォーム（モーダル）-->
+    <div class="modal-container">
+    </div>
+    <div class="modal-body">
+      <div class="modal-close"><i class="fa-solid fa-circle-xmark"></i></div>
+      <div class="modal-post-content">
+        <%= render 'works/form', work: @new_work %>
+      </div>
+    </div>
+
   </body>
 </html>

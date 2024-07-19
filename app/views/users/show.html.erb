@@ -2,8 +2,6 @@
   <div class="row">
     <div class="col-md-6 mx-auto">
       <%= render 'profile', user: @user %>
-      <!--投稿するボタン-->
-      <button class="modal-open btn btn-info">投稿する</button>
 
       <!--ART MAKING MEMOのタブ-->
       <div class="row pt-3">
@@ -15,12 +13,3 @@
 </div>
 
 
-<!--投稿フォーム（モーダル）-->
-<div class="modal-container">
-  <div class="modal-body">
-    <div class="modal-close"><i class="fa-solid fa-circle-xmark"></i></div>
-    <div class="modal-post-content">
-      <%= render 'works/form', work: @work %>
-    </div>
-  </div>
-</div>
