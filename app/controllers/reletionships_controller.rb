@@ -1,5 +1,6 @@
 class ReletionshipsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_new_work
 
   def create
     @user = User.find(params[:user_id])

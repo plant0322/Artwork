@@ -68,7 +68,9 @@
     <div class="modal-body">
       <div class="modal-close"><i class="fa-solid fa-circle-xmark"></i></div>
       <div class="modal-post-content">
-        <%= render 'works/form', work: @new_work %>
+        <% if user_signed_in? %>
+          <%= render 'works/form', work: @new_work %>
+        <% end %>
       </div>
     </div>
 
